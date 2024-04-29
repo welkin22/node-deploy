@@ -250,6 +250,12 @@ reset)
     initNetwork
     native_start
     ;;
+init)
+    create_validator
+    reset_genesis
+    prepare_config
+    initNetwork
+    ;;
 stop)
     exit_previous
     ;;

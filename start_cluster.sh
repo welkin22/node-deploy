@@ -28,6 +28,7 @@ function create_validator() {
     echo "${KEYPASS}" > ${workspace}/.local/bsc/password.txt
 
     for ((i = 0; i < size; i++)); do
+        mkdir -p ${workspace}/.local/bsc/validator${i}
         ${workspace}/bin/geth account new --datadir ${workspace}/.local/bsc/validator${i} --password ${workspace}/.local/bsc/password.txt | grep "Public address of the key:" | awk -F"   " '{print $2}'
         ${workspace}/bin/geth account new --datadir ${workspace}/.local/bsc/validator${i}_fee --password ${workspace}/.local/bsc/password.txt | grep "Public address of the key:" | awk -F"   " '{print $2}'
         ${workspace}/bin/geth bls account new --datadir ${workspace}/.local/bsc/bls${i} --blspassword ${workspace}/.local/bsc/password.txt
